@@ -199,6 +199,8 @@ fork(void)
   np->sz = curproc->sz;
   np->parent = curproc;
   *np->tf = *curproc->tf;
+  np->mask = curproc->mask; // @Hoo : copy mask from parent process
+  // np->isTraced = curproc->isTraced; // @Hoo : passing down trace status
 
   // Clear %eax so that fork returns 0 in the child.
   np->tf->eax = 0;
